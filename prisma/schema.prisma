@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Cartridge {
+  id Int @id @default(autoincrement())
+  model String
+  compability String
+  available Int
+}
+
+model Delivery {
+  id Int @id @default(autoincrement())
+  date DateTime
+  available Int
+}
+
+model Shipment {
+  id Int @id @default(autoincrement())
+  date DateTime
+  available Int
+}
