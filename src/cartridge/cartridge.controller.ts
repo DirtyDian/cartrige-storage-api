@@ -1,5 +1,17 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import { CartridgeService, CartrigeToAdd } from './cartridge.service';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+} from '@nestjs/common';
+import {
+  CartridgeService,
+  CartrigeToAdd,
+  CartrigeToUpdate,
+} from './cartridge.service';
 
 @Controller('cartridges')
 export class CartridgeController {
@@ -13,5 +25,13 @@ export class CartridgeController {
   @Post()
   async create(@Body() cartridge: CartrigeToAdd) {
     return await this.cartridgeService.add(cartridge);
+  }
+
+  @Put(':id')
+  async update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() dto: CartrigeToUpdate,
+  ) {
+    return await this.cartridgeService.update(id, dto);
   }
 }

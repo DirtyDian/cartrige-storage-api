@@ -14,10 +14,25 @@ export class CartridgeService {
       data: cartridge,
     });
   }
+
+  async update(id: number, cartridge: CartrigeToUpdate) {
+    return await this.databaseService.cartridge.update({
+      where: {
+        id,
+      },
+      data: cartridge,
+    });
+  }
 }
 
 export class CartrigeToAdd {
   model: string;
   compability: string;
   available: number;
+}
+
+export class CartrigeToUpdate {
+  model?: string;
+  compability?: string;
+  available?: number;
 }
